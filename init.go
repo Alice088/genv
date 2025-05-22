@@ -1,17 +1,19 @@
 package genv
 
 import (
+	"errors"
 	"fmt"
 	"github.com/joho/godotenv"
 )
 
-func Init(path string) {
+func Init(path string) error {
 	if len(path) == 0 {
-		panic("path is empty")
+		return errors.New("path is empty")
 	}
 
 	err := godotenv.Load(path)
 	if err != nil {
-		panic(fmt.Sprintf("cannot load .env file: %s", err.Error()))
+		return fmt.Errorf("cannot load .env file: %s", err.Error())
 	}
+	return nil
 }

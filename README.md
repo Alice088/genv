@@ -15,7 +15,10 @@
          )
         
          func main() {
-             genv.Init("./env") // if any error == panic(err)
+             err := genv.Init("./env")
+             if err != nil {
+               ...
+             }
         
              id, err := genv.Get("ID")
              if err != nil {
